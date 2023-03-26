@@ -29,9 +29,10 @@ try {
   if(empty($jsonData)) {
     $jsonData[] = $data;
   } else {
-    $now = date('Y-m-d');
+    $sendDate = date('Y-m-d', strtotime( str_replace("/", "-", $_POST['date']) . date('H:i:s') ) );
+    //die(date('Y-m-d', strtotime($_POST['date'])));
     foreach($jsonData as $key => $val) {
-      if($val['name'] == $_POST['name'] && date('Y-m-d', strtotime($val['date'])) == $now) {
+      if($val['name'] == $_POST['name'] && date('Y-m-d', strtotime($val['date'])) == $sendDate) {
         header("Content-Type: application/json");
         echo json_encode(['error' => 'Đơn xin nghỉ hôm nay đã tạo trước đó rồi']);
         exit();
