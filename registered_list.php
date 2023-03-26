@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set("Asia/Bangkok");
 function changeText($val) {
   //$val['date'] = date('H:i:s', strtotime($val['date']));
   $val['date'] = date('d/m/Y H:i:s', strtotime($val['date']));
