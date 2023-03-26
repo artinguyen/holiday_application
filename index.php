@@ -120,7 +120,8 @@
                   <option value="">Lý do</option>
                   </select>
               </div>
-              <input type="text" name="date" id="datepicker" placeholder="Ngày gửi" />
+              <input type="text" name="date" id="date_from" placeholder="Từ ngày" />
+              <input type="text" name="date" id="date_to" placeholder="Đến ngày" />
               <input type="text" name="note" id="note" placeholder="Ghi chú" />
           </div>
           <div class="form-submit">
@@ -133,7 +134,7 @@
 <script>
 $(document).ready(function(){
   // Date
-  $( "#datepicker" ).datepicker({ dateFormat: 'dd/mm/yy', minDate: 0}).datepicker("setDate", new Date());
+  $( "#datepicker, #date_from, #date_to" ).datepicker({ dateFormat: 'dd/mm/yy', minDate: 0}).datepicker("setDate", new Date());
   // Members
   $.getJSON("members_list.json", function(members){
   /*
@@ -185,7 +186,8 @@ $(document).ready(function(){
       'id' : id,
       'name' : name,
       'reason' : $('#reasons option:selected').val(),
-      'date' : $('#datepicker').val(),
+      'date_from' : $('#date_from').val(),
+      'date_to' : $('#date_to').val(),
       'note' : $('#note').val()
     }
     $('.alert').css('display', 'none');

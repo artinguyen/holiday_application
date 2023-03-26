@@ -6,20 +6,39 @@ if (!file_exists($folderName)) {
   mkdir($folderName, 0777, true);
 }
 // Create file  
-$fileName = date('Ym', strtotime( str_replace("/", "-", $_POST['date']))).'.json';
+$fileName = date('Ym', strtotime( str_replace("/", "-", $_POST['date_from']))).'.json';
 $path = $folderName .'/'. $fileName;
 if(!file_exists($path)) {
   fopen($fileName, "w");
 }
 
 try {
-  $data = [
-    'id' => $_POST['id'],
+  // $data = [
+  //   'id' => $_POST['id'],
+  //   'name' => $_POST['name'],
+  //   'reason' => $_POST['reason'],
+  //   'note' => $_POST['note'],
+  //   'date' => date('Y-m-d H:i:s', strtotime( str_replace("/", "-", $_POST['date']) . date('H:i:s') ) )
+  // ];
+  $data = [];
+  $dateFrom = date('Y-m-d', strtotime( str_replace("/", "-", $_POST['date_from']) ) );
+  $dateTo = date('Y-m-d', strtotime( str_replace("/", "-", $_POST['date_to']) ) );
+  $arrDate = [];
+  while (strtotime($dateFrom) <= strtotime($dateTo)) {
+    //$dates[] = $date;
+    
+    $data[] = [
+      'id' => $_POST['id'],
     'name' => $_POST['name'],
     'reason' => $_POST['reason'],
     'note' => $_POST['note'],
-    'date' => date('Y-m-d H:i:s', strtotime( str_replace("/", "-", $_POST['date']) . date('H:i:s') ) )
-  ];
+    //'date' => date('Y-m-d H:i:s', strtotime( str_replace("/", "-", $_POST['date']) . date('H:i:s') ) )
+      'date' => date('Y-m-d H:i:s', strtotime( str_replace("/", "-", $dateFrom . date('H:i:s') ) ))
+    ];
+    $arrDate[] = date('Ymd', strtotime($dateFrom));
+    $dateFrom = date("Y-m-d", strtotime("+1 day", strtotime($dateFrom)));
+ }
+
   $jsonData = [];
   if(file_exists($path)) {
     $jsonString = file_get_contents($path);
@@ -27,18 +46,21 @@ try {
   }
 
   if(empty($jsonData)) {
-    $jsonData[] = $data;
+    $jsonData = $data;
   } else {
-    $sendDate = date('Y-m-d', strtotime( str_replace("/", "-", $_POST['date']) . date('H:i:s') ) );
+    //$sendDate = date('Y-m-d', strtotime( str_replace("/", "-", $_POST['date']) . date('H:i:s') ) );
     //die(date('Y-m-d', strtotime($_POST['date'])));
     foreach($jsonData as $key => $val) {
-      if($val['name'] == $_POST['name'] && date('Y-m-d', strtotime($val['date'])) == $sendDate) {
+      if($val['name'] == $_POST['name'] && in_array(date('Ymd', strtotime($val['date'])), $arrDate)) {
         header("Content-Type: application/json");
         echo json_encode(['error' => 'Đơn xin nghỉ hôm nay đã tạo trước đó rồi']);
         exit();
       }   
     }
-    $jsonData[] = $data;
+    foreach($data as $val) {
+      $jsonData[] = $val;
+    }
+    //$jsonData[] = $data;
   }
 
   // Convert JSON data from an array to a string
