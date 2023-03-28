@@ -18,7 +18,8 @@ try {
     'name' => $_POST['name'],
     'reason' => $_POST['reason'],
     'note' => $_POST['note'],
-    'date' => date('Y-m-d H:i:s', strtotime( str_replace("/", "-", $_POST['date']) . date('H:i:s') ) )
+    'date' => date('Y-m-d', strtotime( str_replace("/", "-", $_POST['date']) ) ),
+    'send_date' => date('Y-m-d H:i:s')
   ];
   $jsonData = [];
   if(file_exists($path)) {

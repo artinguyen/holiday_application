@@ -1,7 +1,8 @@
 <?php
+date_default_timezone_set("Asia/Bangkok");
 function changeText($val) {
   //$val['date'] = date('H:i:s', strtotime($val['date']));
-  $val['date'] = date('d/m/Y H:i:s', strtotime($val['date']));
+  $val['send_date'] = date('d/m/Y H:i:s', strtotime($val['send_date']));
   if($val['reason'] == 'Nghỉ có phép') {
     $val['reason'] = 'OFF';
   }
@@ -29,13 +30,15 @@ if(!empty($_GET['date_from']) && !empty($_GET['date_to'])) {
     $jsonString = file_get_contents($path);
     $jsonData = json_decode($jsonString, true);
   }
-
+  
   $temp = [];
   $dateFrom = date('Y-m-d', strtotime( str_replace("/", "-", $_GET['date_from']) ) );
   $dateTo = date('Y-m-d', strtotime( str_replace("/", "-", $_GET['date_to']) ) );
+  
   if($dateFrom > $dateTo) {
     $jsonData = [];
   }
+ 
   if(date('Y-m', strtotime($dateFrom)) == date('Y-m', strtotime($dateTo)) && $dateFrom <= $dateTo) {
     if(!empty($jsonData)) {
       foreach($jsonData as $key => $val) {
@@ -53,15 +56,16 @@ if(!empty($_GET['date_from']) && !empty($_GET['date_to'])) {
           $temp[] = changeText($val);
         }
         */
-        //var_dump($dateFrom, $dateTo);die();
         // Option 2
         if( date('Y-m-d', strtotime($val['date'])) >= $dateFrom && date('Y-m-d', strtotime($val['date'])) <= $dateTo) {
           $temp[] = changeText($val);
         }
+        
     
       }
       $jsonData = $temp;
     }
+    //die('1');
   }
 
   if(date('Y-m', strtotime($dateFrom)) != date('Y-m', strtotime($dateTo)) && $dateFrom <= $dateTo) {
