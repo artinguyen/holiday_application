@@ -91,6 +91,9 @@ if( isset($_GET['user']) && isset($_GET['pass']) ) {
 		input{
 		width: 100%;
 		}
+		#name{
+			width: 88%;
+		}
 		th{
 		text-align: center;
 		vertical-align: middle !important;
@@ -100,6 +103,9 @@ if( isset($_GET['user']) && isset($_GET['pass']) ) {
 	@media (max-width: 768px) {
 		input{
 		width: 100%;
+		}
+		#name{
+			width: 88%;
 		}
 		th{
 		text-align: center;

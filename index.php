@@ -228,9 +228,9 @@ $(document).ready(function(){
         } else {
           $('.alert-danger').text(response.error).show();
         }
-        setInterval(function () {
+        setTimeout(function () {
           $('.alert').hide();
-        }, 1000);
+        }, 2000);
         $(self).removeAttr('disabled');
       }
 	  });
