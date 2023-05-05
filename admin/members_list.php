@@ -1,6 +1,7 @@
 <?php
 	function changeText($val) {
-		$val['date'] = date('d/m/Y H:i:s', strtotime($val['date']));
+		//$val['date'] = date('d/m/Y H:i:s', strtotime($val['date']));
+		$val['date'] = date('Y-m-d', strtotime($val['date']));
 		if($val['reason'] == 'Nghỉ có phép') {
 			$val['reason'] = 'OFF';
 		}
@@ -27,16 +28,44 @@
 		$jsonData = json_decode($jsonString, true);
 	}
 	$temp = [];
-	$date = date('Y-m-d', strtotime( str_replace("/", "-", $_GET['date']) ) );
+
+	$startDate = date("Y-m-01", strtotime($_GET['date']));
+    $endDate = date("Y-m-t", strtotime($_GET['date']));
+	$startDate = new DateTime($startDate);
+    $endDate = new DateTime($endDate);
 	if(!empty($jsonData)) {
 		foreach($jsonData as $key => $val) {
-			if( date('Y-m-d', strtotime($val['date'])) == $date) {
-			$temp[] = changeText($val);
+			while($startDate <= $endDate ){
+				$date = $startDate->format('Y-m-d');
+				if( date('Y-m-d', strtotime($val['date'])) == $date) {
+				$temp[] = changeText($val);
+				break;
+			}
+				// increase startDate by 1
+				$startDate->modify('+1 day');
 			}
 		
 		}
 		$recordedList = $temp;
 	}
+	$startDate = date("Y-m-01", strtotime($_GET['date']));
+	$startDate = new DateTime($startDate);
+    $resultDays = array('Monday','Tuesday','Wednesday','Thursday','Friday');
+
+	$arrDate = [];
+    // iterate over start to end date
+    while($startDate <= $endDate ){
+        // find the timestamp value of start date
+        $timestamp = strtotime($startDate->format('Y-m-d'));
+        // find out the day for timestamp and increase particular day
+        $weekDay = date('l', $timestamp);
+		if(in_array($weekDay, $resultDays)) {
+			$arrDate[] = $startDate->format('Y-m-d');
+		}
+        // increase startDate by 1
+        $startDate->modify('+1 day');
+    }
+
 	// Get members list
 	$jsonData = [];
 	$folderName = date('Y');
@@ -56,28 +85,35 @@
 	
 	$total_user = 0;
 	$total_evidence = 0;
+
 	foreach($jsonData as $key1 => $value1) {
+		// Reason
+		$jsonData[$key1]['reason'] =  array_combine($arrDate, $arrDate);
 		foreach($recordedList as $key2 => $value2) {
 			if($value1['text'] == $value2['name'] && !empty($value2['reason'])) {
-			$jsonData[$key1]['reason'] = $value2['reason'];
-			break;
+				$jsonData[$key1]['reason'][date('Y-m-d', strtotime($value2['date']))] =  $value2['reason'];
 			}
 		}
-		
-		if(!empty($value1['content']) && in_array($_GET['date'], $value1['content'])) {
-			$jsonData[$key1]['content'] = 'true';
-			$total_user++;
-		} else {
-			$jsonData[$key1]['content'] = '';
+		$jsonData[$key1]['reason'] = array_values($jsonData[$key1]['reason']);
+		$jsonData[$key1]['list_date'] = $arrDate;
+		// Content
+		$jsonData[$key1]['content_list'] =  array_combine($arrDate, $arrDate);
+		if(!empty($value1['content'])) {
+			foreach($value1['content'] as $key => $value) {
+				$jsonData[$key1]['content_list'][$value] =  'true';
+			}
 		}
+		$jsonData[$key1]['content_list'] = array_values($jsonData[$key1]['content_list']);
+		// Evidence
+		$jsonData[$key1]['evidence_list'] =  array_combine($arrDate, $arrDate);
+		if(!empty($value1['evidence'])) {
+			foreach($value1['evidence'] as $key => $value) {
+				$key = date('Y-m-d', strtotime($key));
+				$jsonData[$key1]['evidence_list'][$key] =  $value;
+			}
+		}
+		$jsonData[$key1]['evidence_list'] = array_values($jsonData[$key1]['evidence_list']);
 
-		$keyEvidence = date('Ymd', strtotime($_GET['date']));
-		if( !empty($value1['evidence']) && in_array($keyEvidence, array_keys($value1['evidence'])) ) {
-			$jsonData[$key1]['evidence'] = $jsonData[$key1]['evidence'][date('Ymd', strtotime($_GET['date']))];
-			$total_evidence++;
-		} else {
-			$jsonData[$key1]['evidence'] = '';
-		}
 	}
 
 	header("Content-Type: application/json");
