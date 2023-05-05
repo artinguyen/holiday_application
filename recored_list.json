@@ -1,0 +1,218 @@
+[
+    {
+        "id": 1,
+        "text": "Nguy\u1ec5n Th\u1ecb Thanh Th\u1ea3o",
+        "team": "BE",
+        "content": [
+            "2023-03-24"
+        ]
+    },
+    {
+        "id": 2,
+        "text": "Ng\u00f4 Th\u1ebf Hi\u1ec3n",
+        "team": "BE"
+    },
+    {
+        "id": 3,
+        "text": "V\u01b0\u01a1ng Th\u00e1i Hu\u1ef3nh",
+        "team": "BE"
+    },
+    {
+        "id": 4,
+        "text": "Ph\u1ea1m V\u0169 Duy Nam",
+        "team": "BE"
+    },
+    {
+        "id": 5,
+        "text": "V\u0169 Minh Qu\u00e2n",
+        "team": "BE"
+    },
+    {
+        "id": 6,
+        "text": "Ph\u1ea1m Thanh T\u00e2n",
+        "team": "BE"
+    },
+    {
+        "id": 7,
+        "text": "Hu\u1ef3nh Kh\u00e1nh H\u00f2a",
+        "team": "BE"
+    },
+    {
+        "id": 8,
+        "text": "V\u00f5 Nguy\u1ec5n Loan Anh",
+        "team": "BE"
+    },
+    {
+        "id": 9,
+        "text": "Nguy\u1ec5n V\u0103n Tuy\u1ebfn",
+        "team": "BE"
+    },
+    {
+        "id": 10,
+        "text": "Phan T\u01b0\u1eddng Duy",
+        "team": "BE"
+    },
+    {
+        "id": 11,
+        "text": "Nguy\u1ec5n Duy",
+        "team": "FE"
+    },
+    {
+        "id": 12,
+        "text": "Ho\u00e0ng Th\u1ea3o My",
+        "team": "FE"
+    },
+    {
+        "id": 13,
+        "text": "Ph\u1ea1m H\u00e0 Anh Tu\u1ea5n",
+        "team": "FE"
+    },
+    {
+        "id": 14,
+        "text": "Nguy\u1ec5n Th\u00e0nh Nam",
+        "team": "FE"
+    },
+    {
+        "id": 15,
+        "text": "Tr\u1ea7n Th\u1ecb Th\u00f9y Ng\u00e2n",
+        "team": "FE"
+    },
+    {
+        "id": 16,
+        "text": "V\u0169 Th\u1ecb Ng\u1ecdc Tr\u00e2m",
+        "team": "FE"
+    },
+    {
+        "id": 17,
+        "text": "Nguy\u1ec5n Ho\u00e0ng Duy",
+        "team": "FE"
+    },
+    {
+        "id": 18,
+        "text": "V\u0169 Huy Chung",
+        "team": "FE"
+    },
+    {
+        "id": 19,
+        "text": "D\u01b0\u01a1ng T\u1ea5n Thanh",
+        "team": "FE"
+    },
+    {
+        "id": 20,
+        "text": "Ng\u00f4 Th\u1ecb Ph\u01b0\u01a1ng Th\u1ea3o",
+        "team": "FE"
+    },
+    {
+        "id": 21,
+        "text": "\u0110\u1ed7 Minh Sang",
+        "team": "BE"
+    },
+    {
+        "id": 22,
+        "text": "Hu\u1ef3nh Tr\u1ecdng Ki\u00ean",
+        "team": "FE"
+    },
+    {
+        "id": 23,
+        "text": "Tr\u1ea7n Minh Thi\u1ec7n",
+        "team": "FE"
+    },
+    {
+        "id": 24,
+        "text": "L\u00ea Vi\u1ebft T\u00e2n",
+        "team": "FE"
+    },
+    {
+        "id": 25,
+        "text": "Nguy\u1ec5n V\u0103n Nam",
+        "team": "FE"
+    },
+    {
+        "id": 26,
+        "text": "Nguy\u1ec5n V\u0103n \u0110o\u00e0n",
+        "team": "FE"
+    },
+    {
+        "id": 27,
+        "text": "V\u00f5 Trung Nam",
+        "team": "FE"
+    },
+    {
+        "id": 28,
+        "text": "\u0110o\u00e0n T\u1ea5n L\u1ed9c",
+        "team": "FE"
+    },
+    {
+        "id": 29,
+        "text": "Tr\u01b0\u01a1ng Qu\u1ed1c Huy",
+        "team": "BE"
+    },
+    {
+        "id": 30,
+        "text": "D\u01b0\u01a1ng H\u1eefu T\u00fa",
+        "team": "BE"
+    },
+    {
+        "id": 31,
+        "text": "Nguy\u1ec5n Tr\u1ea7n Qu\u1ed1c \u0110\u1ea1t",
+        "team": "BE"
+    },
+    {
+        "id": 32,
+        "text": "\u0110\u1eb7ng Ng\u1ecdc H\u00f9ng"
+    },
+    {
+        "id": 33,
+        "text": "B\u00f9i Minh L\u1ed9c",
+        "team": "BE"
+    },
+    {
+        "id": 34,
+        "text": "Qu\u00e1ch Tr\u1ecdng Nh\u00e2n"
+    },
+    {
+        "id": 35,
+        "text": "Nguy\u1ec5n Th\u1ebf An",
+        "team": "BE"
+    },
+    {
+        "id": 36,
+        "text": "L\u00ea Quang Hi\u1ebfu"
+    },
+    {
+        "id": 37,
+        "text": "Ph\u1ea1m Ph\u00fa C\u01b0\u1eddng"
+    },
+    {
+        "id": 38,
+        "text": "Nguy\u1ec5n Minh T\u00edn",
+        "team": "BE"
+    },
+    {
+        "id": 39,
+        "text": "Ph\u1ea1m Gia L\u1eadp"
+    },
+    {
+        "id": 40,
+        "text": "T\u00f4 Kim Nguy\u1ec5n"
+    },
+    {
+        "id": 41,
+        "text": "Hu\u1ef3nh Minh Ho\u00e0ng",
+        "team": "BE"
+    },
+    {
+        "id": 42,
+        "text": "Hu\u1ef3nh T\u01b0 L\u1ec7nh",
+        "team": "BE"
+    },
+    {
+        "id": 43,
+        "text": "Ho\u00e0ng H\u1eefu Th\u00f4ng",
+        "team": "BE"
+    },
+    {
+        "id": 44,
+        "text": "Nguy\u1ec5n V\u0103n Minh"
+    }
+]

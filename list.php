@@ -292,6 +292,7 @@ $(document).ready(function(){
 				}
 				$('tbody tr').remove();
 				$('tbody').append(text);
+filter(getCookie('member_name'));
 			} else {
 				
 				}
