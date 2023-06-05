@@ -208,6 +208,11 @@ $(document).ready(function(){
       $('.alert-danger').css('display', 'block').text('Vui lòng điền thời gian bạn có mặt vào mục Ghi chú');
       return false;
     }
+    // Check validation
+    if($('#reasons option:selected').val() == 'Work From Home' && ($('#note').val()).trim() == '') {
+      $('.alert-danger').css('display', 'block').text('Vui lòng điền lý do cụ thể và "thật lòng"vào mục Ghi chú');
+      return false;
+    }
     $(this).attr('disabled', 'disabled');
     let self = this;
   	$.ajax({

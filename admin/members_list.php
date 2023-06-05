@@ -35,12 +35,12 @@
     $endDate = new DateTime($endDate);
 	if(!empty($jsonData)) {
 		foreach($jsonData as $key => $val) {
+			$startDate = new DateTime( date("Y-m-01", strtotime($_GET['date'])) );
 			while($startDate <= $endDate ){
 				$date = $startDate->format('Y-m-d');
 				if( date('Y-m-d', strtotime($val['date'])) == $date) {
-				$temp[] = changeText($val);
-				break;
-			}
+					$temp[] = changeText($val);
+				}
 				// increase startDate by 1
 				$startDate->modify('+1 day');
 			}
@@ -69,7 +69,11 @@
 	// Get members list
 	$jsonData = [];
 	$folderName = date('Y');
-	$fileName = date('Ym').'.json';
+	if(!empty($_GET['date'])) {
+		$fileName = date("Ym", strtotime($_GET['date'])).'.json';
+	} else {
+		$fileName = date('Ym').'.json';
+	}
 	$path = '../'. $folderName .'/'. 'recored_list_' . $fileName;
 	if(file_exists($path)) {
 		$jsonString = file_get_contents($path);

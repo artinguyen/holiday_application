@@ -27,11 +27,20 @@ try {
     $jsonData = json_decode($jsonString, true);
   }
 
+  // Check error sending time
+  $startValidTime = date('Y-m-d 08:00:00');
+  $endValidTime = date('Y-m-d 17:00:00');
+  $validDate = date('Y-m-d H:i:s', strtotime( str_replace("/", "-", $_POST['date']) . date('H:i:s')) );
+  if($validDate > $startValidTime && $validDate < $endValidTime) {
+    header("Content-Type: application/json");
+    echo json_encode(['error' => 'Bạn không thể tạo đơn trong thời gian từ 08:00 - 17:00']);
+    exit();
+  }
+
   if(empty($jsonData)) {
     $jsonData[] = $data;
   } else {
     $sendDate = date('Y-m-d', strtotime( str_replace("/", "-", $_POST['date']) . date('H:i:s') ) );
-    //die(date('Y-m-d', strtotime($_POST['date'])));
     foreach($jsonData as $key => $val) {
       if($val['name'] == $_POST['name'] && date('Y-m-d', strtotime($val['date'])) == $sendDate) {
         header("Content-Type: application/json");
